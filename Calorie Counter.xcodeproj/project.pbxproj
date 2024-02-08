@@ -19,6 +19,7 @@
 		632980FB2B746FF100086A9E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		632980FD2B746FF200086A9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		632981002B746FF200086A9E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		632981072B74702900086A9E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +36,7 @@
 		632980ED2B746FF100086A9E = {
 			isa = PBXGroup;
 			children = (
+				632981072B74702900086A9E /* README.md */,
 				632980F82B746FF100086A9E /* Calorie Counter */,
 				632980F72B746FF100086A9E /* Products */,
 			);
