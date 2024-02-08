@@ -20,6 +20,8 @@
 		632980FD2B746FF200086A9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		632981002B746FF200086A9E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		632981072B74702900086A9E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6351291F2B74879D00B1948C /* secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = secrets.plist; sourceTree = "<group>"; };
+		635129202B7487F900B1948C /* secrets-example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "secrets-example.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +39,8 @@
 			isa = PBXGroup;
 			children = (
 				632981072B74702900086A9E /* README.md */,
+				635129202B7487F900B1948C /* secrets-example.plist */,
+				6351291F2B74879D00B1948C /* secrets.plist */,
 				632980F82B746FF100086A9E /* Calorie Counter */,
 				632980F72B746FF100086A9E /* Products */,
 			);

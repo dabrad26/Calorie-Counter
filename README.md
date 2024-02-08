@@ -4,6 +4,10 @@
 
 Final Project by David Bradshaw (@dabrad26) for iOS App Productions (CSE-41249) course for UC San Diego Extended Studies in Winter 2024
 
+## Setup
+
+Create a new file called secrets.plist (use the secrets-example.plist file for reference). You must paste your secret in this PLIST file. This file is not commited.
+
 ## Tech Stack
 
 - Swift
