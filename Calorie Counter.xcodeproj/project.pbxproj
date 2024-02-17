@@ -11,6 +11,11 @@
 		632980FC2B746FF100086A9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632980FB2B746FF100086A9E /* ContentView.swift */; };
 		632980FE2B746FF200086A9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632980FD2B746FF200086A9E /* Assets.xcassets */; };
 		632981012B746FF200086A9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632981002B746FF200086A9E /* Preview Assets.xcassets */; };
+		63680B102B800EB4006F047A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680B0F2B800EB4006F047A /* Food.swift */; };
+		63680B122B800ED0006F047A /* FoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680B112B800ED0006F047A /* FoodLog.swift */; };
+		63680B142B802189006F047A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680B132B802189006F047A /* Helpers.swift */; };
+		63680B162B803512006F047A /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680B152B803512006F047A /* UserStore.swift */; };
+		63680B182B8047B8006F047A /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63680B172B8047B7006F047A /* NoItemsView.swift */; };
 		63A8AB922B7DDBFA00D69FF1 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8AB912B7DDBFA00D69FF1 /* TodayView.swift */; };
 		63A8AB942B7DDC4000D69FF1 /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8AB932B7DDC4000D69FF1 /* DiaryView.swift */; };
 		63A8AB962B7DDC5700D69FF1 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8AB952B7DDC5700D69FF1 /* AccountView.swift */; };
@@ -32,6 +37,11 @@
 		632981072B74702900086A9E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6351291F2B74879D00B1948C /* secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = secrets.plist; sourceTree = "<group>"; };
 		635129202B7487F900B1948C /* secrets-example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "secrets-example.plist"; sourceTree = "<group>"; };
+		63680B0F2B800EB4006F047A /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		63680B112B800ED0006F047A /* FoodLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLog.swift; sourceTree = "<group>"; };
+		63680B132B802189006F047A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		63680B152B803512006F047A /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		63680B172B8047B7006F047A /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
 		63A8AB912B7DDBFA00D69FF1 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		63A8AB932B7DDC4000D69FF1 /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
 		63A8AB952B7DDC5700D69FF1 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -78,6 +88,9 @@
 			isa = PBXGroup;
 			children = (
 				632980F92B746FF100086A9E /* Calorie_CounterApp.swift */,
+				63680B152B803512006F047A /* UserStore.swift */,
+				63680B0F2B800EB4006F047A /* Food.swift */,
+				63680B112B800ED0006F047A /* FoodLog.swift */,
 				632980FB2B746FF100086A9E /* ContentView.swift */,
 				63A8AB912B7DDBFA00D69FF1 /* TodayView.swift */,
 				63A8AB932B7DDC4000D69FF1 /* DiaryView.swift */,
@@ -89,6 +102,8 @@
 				63A8AB9B2B7DE92100D69FF1 /* AccountImport.swift */,
 				63A8AB9D2B7DE93F00D69FF1 /* AccountExport.swift */,
 				63A8AB9F2B7DE96C00D69FF1 /* AccountDelete.swift */,
+				63680B132B802189006F047A /* Helpers.swift */,
+				63680B172B8047B7006F047A /* NoItemsView.swift */,
 				632980FD2B746FF200086A9E /* Assets.xcassets */,
 				632980FF2B746FF200086A9E /* Preview Content */,
 			);
@@ -173,17 +188,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63680B122B800ED0006F047A /* FoodLog.swift in Sources */,
 				632980FC2B746FF100086A9E /* ContentView.swift in Sources */,
 				63A8ABA42B7DEC5000D69FF1 /* NewFoodView.swift in Sources */,
 				63A8AB942B7DDC4000D69FF1 /* DiaryView.swift in Sources */,
 				63A8AB922B7DDBFA00D69FF1 /* TodayView.swift in Sources */,
 				632980FA2B746FF100086A9E /* Calorie_CounterApp.swift in Sources */,
+				63680B162B803512006F047A /* UserStore.swift in Sources */,
 				63A8ABA22B7DEB7400D69FF1 /* LogFoodView.swift in Sources */,
 				63A8AB982B7DDCCA00D69FF1 /* MyFoodView.swift in Sources */,
 				63A8AB9A2B7DE8F400D69FF1 /* AccountAbout.swift in Sources */,
 				63A8ABA02B7DE96C00D69FF1 /* AccountDelete.swift in Sources */,
+				63680B102B800EB4006F047A /* Food.swift in Sources */,
 				63A8AB9C2B7DE92100D69FF1 /* AccountImport.swift in Sources */,
+				63680B182B8047B8006F047A /* NoItemsView.swift in Sources */,
 				63A8AB962B7DDC5700D69FF1 /* AccountView.swift in Sources */,
+				63680B142B802189006F047A /* Helpers.swift in Sources */,
 				63A8AB9E2B7DE93F00D69FF1 /* AccountExport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

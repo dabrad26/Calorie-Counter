@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct TodayView: View {
+    @ObservedObject var userStore: UserStore
     @State private var showNewForm = false
+    
+    init(userStore: UserStore) {
+        self.userStore = userStore
+    }
     
     var body: some View {
         NavigationStack {
@@ -32,5 +37,5 @@ struct TodayView: View {
 }
 
 #Preview {
-    TodayView()
+    TodayView(userStore: UserStore())
 }

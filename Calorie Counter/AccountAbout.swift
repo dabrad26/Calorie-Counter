@@ -10,7 +10,7 @@ import SwiftUI
 struct AccountAbout: View {
     var body: some View {
         List {
-            Section(header: Text("DEVELOPER")) {
+            Section(header: Text("Developer")) {
                 HStack {
                     Image(systemName: "person.fill")
                     Text("David Bradshaw")
@@ -55,7 +55,7 @@ struct AccountAbout: View {
                 })
                 .foregroundColor(.primary)
             }
-            Section(header: Text("PROJECT")) {
+            Section(header: Text("Project")) {
                 HStack {
                     Image(systemName: "iphone.gen3")
                     Text("Calorie Counter for iOS")
@@ -74,7 +74,7 @@ struct AccountAbout: View {
                 })
                 .foregroundColor(.primary)
             }
-            Section(header: Text("CLASS")) {
+            Section(header: Text("Class")) {
                 HStack {
                     Image(systemName: "building.columns")
                     Text("UC San Diego Extended Studies")

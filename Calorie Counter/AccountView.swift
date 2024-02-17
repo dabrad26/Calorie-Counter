@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct AccountView: View {
+    @ObservedObject var userStore: UserStore
+    
+    init(userStore: UserStore) {
+        self.userStore = userStore
+    }
+    
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("GENERAL")) {
+                Section(header: Text("General")) {
                     NavigationLink(destination: AccountAbout()) {
                         HStack {
                             Image(systemName: "info.circle")
@@ -19,7 +25,7 @@ struct AccountView: View {
                         }
                     }
                 }
-                Section(header: Text("DATA")) {
+                Section(header: Text("Data")) {
                     NavigationLink(destination: AccountImport()) {
                         HStack {
                             Image(systemName: "arrow.up.circle")
@@ -33,7 +39,7 @@ struct AccountView: View {
                         }
                     }
                 }
-                Section(header: Text("ACCOUNT")) {
+                Section(header: Text("Account")) {
                     NavigationLink(destination: AccountDelete()) {
                         HStack {
                             Image(systemName: "xmark.circle")
@@ -49,5 +55,5 @@ struct AccountView: View {
 }
 
 #Preview {
-    AccountView()
+    AccountView(userStore: UserStore())
 }

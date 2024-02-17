@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct MyFoodView: View {
-    @State private var showNewForm = false;
+    @ObservedObject var userStore: UserStore
+    @State private var showNewForm = false
+    
+    init(userStore: UserStore) {
+        self.userStore = userStore
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
-                Text("My Foods View")
+                if (userStore.foods.count == 0) {
+                    NoItemsView()
+                } else {
+                    List {
+                        ForEach(userStore.foods) { food in
+                            Text(food.name)
+                        }
+                        .onDelete(perform: delete)
+                    }
+                }
             }
             .navigationTitle("My Foods")
             .toolbar {
@@ -24,12 +39,16 @@ struct MyFoodView: View {
                 }
             }
             .sheet(isPresented: $showNewForm) {
-                NewFoodView(showNewForm: $showNewForm)
+                NewFoodView(showNewForm: $showNewForm, userStore: userStore)
             }
         }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        userStore.removeFoodItem(offsets: offsets)
     }
 }
 
 #Preview {
-    MyFoodView()
+    MyFoodView(userStore: UserStore())
 }

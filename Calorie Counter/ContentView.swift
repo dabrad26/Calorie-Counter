@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    let userStore = UserStore()
+    
     var body: some View {
         TabView {
-            TodayView()
+            TodayView(userStore: userStore)
                 .tabItem {
                     Label("Today", systemImage: "flame.fill")
                 }
-            DiaryView()
+            DiaryView(userStore: userStore)
                 .tabItem {
                     Label("Diary", systemImage: "calendar")
                 }
-            MyFoodView()
+            MyFoodView(userStore: userStore)
                 .tabItem {
                     Label("My Foods", systemImage: "fork.knife")
                 }
-            AccountView()
+            AccountView(userStore: userStore)
                 .tabItem {
                     Label("Account", systemImage: "person.crop.circle.fill")
                 }
