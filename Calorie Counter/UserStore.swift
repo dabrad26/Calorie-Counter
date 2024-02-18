@@ -8,21 +8,23 @@
 import Foundation
 
 struct JsonStoreData: Codable {
+    var dailyCalories: String
     var foods: [FoodDataStore]
     var foodLogs: [FoodLogDataStore]
 }
 
 class UserStore: ObservableObject {
+    @Published var dailyCalories: String = "2000"
     @Published var foods: [Food] = []
     @Published var foodLogs: [FoodLog] = []
     var lastStoredJson: String = ""
     
     init() {
         let userData = UserDefaults.standard.string(forKey: "user_store")
-        initializeDate(userData: userData)
+        initializeData(userData: userData)
     }
     
-    private func initializeDate(userData: String?) -> Void {
+    private func initializeData(userData: String?) -> Void {
         if (userData != nil) {
             lastStoredJson = userData ?? ""
             let jsonData = userData!.data(using: .utf8)
@@ -41,14 +43,22 @@ class UserStore: ObservableObject {
                     newFoodLog.loadFromDataStore(data: item)
                     foodLogs.append(newFoodLog)
                 }
+                
+                dailyCalories = data.dailyCalories
+                
+                sortFoodLog()
             } catch {
                 print("ERROR: Unable to get JSON data on load: \(error.localizedDescription)")
             }
         }
     }
     
+    private func sortFoodLog() -> Void {
+        foodLogs.sort(by: { $0.date.compare($1.date) == .orderedAscending })
+    }
+    
     func saveData() -> Void {
-        let data = JsonStoreData(foods: foods.map({ item in
+        let data = JsonStoreData(dailyCalories: dailyCalories, foods: foods.map({ item in
             return item.dataStore
         }), foodLogs: foodLogs.map({ item in
             return item.dataStore
@@ -65,12 +75,13 @@ class UserStore: ObservableObject {
     }
     
     func addFoodItem(item: Food) -> Void {
-        foods.append(item)
+        foods.insert(item, at: 0)
         saveData()
     }
     
     func addFoodLogItem(item: FoodLog) -> Void {
-        foodLogs.append(item)
+        foodLogs.insert(item, at: 0)
+        sortFoodLog()
         saveData()
     }
     
@@ -79,8 +90,13 @@ class UserStore: ObservableObject {
         saveData()
     }
     
-    func removeFoodLogItem(offsets: IndexSet) {
-        foodLogs.remove(atOffsets: offsets)
+    func removeFoodLogItem(item: FoodLog) {
+        let index = foodLogs.firstIndex(where: { $0.id == item.id })
+        
+        if (index != nil) {
+            foodLogs.remove(at: index!)
+        }
+        
         saveData()
     }
 }

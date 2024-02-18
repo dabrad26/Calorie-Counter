@@ -30,7 +30,7 @@ struct TodayView: View {
                 }
             }
             .sheet(isPresented: $showNewForm) {
-                LogFoodView(showNewForm: $showNewForm)
+                LogFoodView(showNewForm: $showNewForm, userStore: userStore)
             }
         }
     }

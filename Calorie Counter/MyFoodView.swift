@@ -23,7 +23,7 @@ struct MyFoodView: View {
                 } else {
                     List {
                         ForEach(userStore.foods) { food in
-                            Text(food.name)
+                            food.displayList
                         }
                         .onDelete(perform: delete)
                     }

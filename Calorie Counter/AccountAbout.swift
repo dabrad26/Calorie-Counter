@@ -34,7 +34,7 @@ struct AccountAbout: View {
                     }
                 }, label: {
                     HStack {
-                        Image(systemName: "safari")
+                        Image(systemName: "briefcase.fill")
                         Text(verbatim: "LinkedIn")
                         Spacer()
                         Image(systemName: "link")
@@ -47,7 +47,7 @@ struct AccountAbout: View {
                     }
                 }, label: {
                     HStack {
-                        Image(systemName: "safari")
+                        Image(systemName: "desktopcomputer")
                         Text(verbatim: "GitHub")
                         Spacer()
                         Image(systemName: "link")
@@ -66,7 +66,7 @@ struct AccountAbout: View {
                     }
                 }, label: {
                     HStack {
-                        Image(systemName: "safari")
+                        Image(systemName: "desktopcomputer")
                         Text(verbatim: "GitHub")
                         Spacer()
                         Image(systemName: "link")

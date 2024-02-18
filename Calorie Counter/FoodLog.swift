@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct FoodLogDataStore: Codable {
     var id: UUID
@@ -17,12 +18,46 @@ struct FoodLogDataStore: Codable {
 class FoodLog: ObservableObject, Identifiable {
     var id: UUID
     var date: Date
-    var food: Food = Food()
-    var numberServings: Double = 1.0
+    @Published var food: Food = Food()
+    @Published var numberServings: Double = 1.0
     
     init() {
         id = UUID()
         date = Date()
+    }
+    
+    private var numberFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        
+        return formatter
+    }
+    
+    var displayServingInfo: String {
+        get {
+            let servingTotal = numberServings * Double(food.servingSize)
+            
+            return "\(numberFormatter.string(for: servingTotal) ?? "0") \(food.displayServingSizeUnit)"
+        }
+    }
+    
+    var displayList: some View {
+        get {
+            return VStack {
+                Text(date.formatted())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("\(food.displayName) - \(displayServingInfo)")
+                    .font(.caption)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+    
+    var displayServings: String {
+        get {
+            return numberFormatter.string(for: numberServings) ?? "0"
+        }
     }
     
     var dataStore: FoodLogDataStore {

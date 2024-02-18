@@ -18,7 +18,26 @@ struct DiaryView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("Diary View")
+                if (userStore.foodLogs.count == 0) {
+                    NoItemsView()
+                } else {
+                    List {
+                        Section() {
+                            ForEach(userStore.foodLogs) { foodLog in
+                                foodLog.displayList
+                            }
+                            .onDelete(perform: { indexSet in
+                                indexSet.forEach { index in
+                                    let foundItem: FoodLog? = userStore.foodLogs[index]
+                                    
+                                    if (foundItem != nil) {
+                                        userStore.removeFoodLogItem(item: foundItem!)
+                                    }
+                                }
+                            })
+                        }
+                    }
+                }
             }
             .navigationTitle("Diary")
             .toolbar {
@@ -30,7 +49,7 @@ struct DiaryView: View {
                 }
             }
             .sheet(isPresented: $showNewForm) {
-                LogFoodView(showNewForm: $showNewForm)
+                LogFoodView(showNewForm: $showNewForm, userStore: userStore, showDate: true)
             }
         }
     }

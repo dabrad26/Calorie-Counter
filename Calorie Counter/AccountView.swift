@@ -17,6 +17,14 @@ struct AccountView: View {
     var body: some View {
         NavigationView {
             List {
+                Section(header: Text("Settings")) {
+                    getNumberField($userStore.dailyCalories, "Daily Calories")
+                        .onChange(of: userStore.dailyCalories) {
+                            if (isNumber(userStore.dailyCalories)) {
+                                userStore.saveData()
+                            }
+                        }
+                }
                 Section(header: Text("General")) {
                     NavigationLink(destination: AccountAbout()) {
                         HStack {

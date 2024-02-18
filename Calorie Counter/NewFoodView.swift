@@ -29,9 +29,10 @@ struct NewFoodView: View {
                         TextField("Brand", text: $food.brand)
                     }
                     Section(header: Text("Serving Size")) {
+                        getNumberField($food.servingSizeString, "Servings")
                         Picker("Unit", selection: $food.servingSizeUnit) {
                             Text("Gram").tag(ServingSizeUnit.g)
-                            Text("Each").tag(ServingSizeUnit.each)
+                            Text("Item").tag(ServingSizeUnit.each)
                             Text("Other").tag(ServingSizeUnit.other)
                         }
                     }
@@ -39,6 +40,7 @@ struct NewFoodView: View {
                         getNumberField($food.caloriesString, "Calories (Kcal)")
                         getNumberField($food.fatString, "Fat (G)")
                         getNumberField($food.proteinString, "Protein (G)")
+                        getNumberField($food.sugarString, "Sugar (G)")
                         getNumberField($food.carbohydrateString, "Carbohydrate (G)")
                         getNumberField($food.fiberString, "Fiber (G)")
                         getNumberField($food.sodiumString, "Sodium (MG)")

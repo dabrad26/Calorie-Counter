@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum ServingSizeUnit {
     case g
@@ -18,10 +19,12 @@ struct FoodDataStore: Codable {
     var id: UUID
     var name: String = ""
     var brand: String = ""
+    var servingSize: Int = 0
     var servingSizeUnit: String = ""
     var calories: Int = 0
     var fat: Int = 0
     var protein: Int = 0
+    var sugar: Int = 0
     var carbohydrate: Int = 0
     var fiber: Int = 0
     var sodium: Int = 0
@@ -35,6 +38,8 @@ class Food: ObservableObject, Identifiable {
     @Published var name: String = ""
     /** Brand of item (optional) */
     var brand: String = ""
+    /** Servering size */
+    var servingSize: Int = 1
     /** Serving size unit (from API) */
     var servingSizeUnit: ServingSizeUnit = ServingSizeUnit.g
     /** Calories (energy) in KCAL */
@@ -43,6 +48,8 @@ class Food: ObservableObject, Identifiable {
     var fat: Int = 0
     /** Total Protein in G */
     var protein: Int = 0
+    /** Total Sugar in G */
+    var sugar: Int = 0
     /** Total Carbohydrate in G */
     var carbohydrate: Int = 0
     /** Total Fiber in G */
@@ -56,8 +63,65 @@ class Food: ObservableObject, Identifiable {
         id = UUID()
     }
     
-    private func isNumber(_ value: String) -> Bool {
-        return Int(value) != nil
+    var displayName: String {
+        get {
+            var nameString = name
+            
+            if (brand != "") {
+                nameString = "\(name) (\(brand))"
+            }
+            
+            return nameString
+        }
+    }
+    
+    var displayServingInfo: String {
+        get {
+            return "\(servingSizeString) \(displayServingSizeUnit)"
+        }
+    }
+    
+    var displayList: some View {
+        get {
+            var stringParts: [String] = [displayServingInfo, "\(caloriesString) Kcal"];
+            
+            if (fatString != "" && stringParts.count < 5) {
+                stringParts.append("\(fatString)G fat")
+            }
+            
+            if (sugarString != "" && stringParts.count < 5) {
+                stringParts.append("\(sugarString)G sugar")
+            }
+            
+            if (proteinString != "" && stringParts.count < 5) {
+                stringParts.append("\(proteinString)G protein")
+            }
+            
+            if (fiberString != "" && stringParts.count < 5) {
+                stringParts.append("\(fiberString)G fiber")
+            }
+            
+            if (carbohydrateString != "" && stringParts.count < 5) {
+                stringParts.append("\(carbohydrateString)G carbs")
+            }
+
+            return VStack {
+                Text(displayName)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(stringParts.joined(separator: ", "))
+                    .font(.caption)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+    
+    var servingSizeString: String {
+        get {
+            return servingSize > 0 ? String(servingSize) : ""
+        }
+        set (newValue) {
+            servingSize = isNumber(newValue) ? Int(newValue) ?? 0 : 0
+        }
     }
     
     var caloriesString: String {
@@ -84,6 +148,15 @@ class Food: ObservableObject, Identifiable {
         }
         set (newValue) {
             protein = isNumber(newValue) ? Int(newValue) ?? 0 : 0
+        }
+    }
+    
+    var sugarString: String {
+        get {
+            return sugar > 0 ? String(sugar) : ""
+        }
+        set (newValue) {
+            sugar = isNumber(newValue) ? Int(newValue) ?? 0 : 0
         }
     }
     
@@ -123,11 +196,11 @@ class Food: ObservableObject, Identifiable {
         }
     }
     
-    var displayServingSize: String {
+    var displayServingSizeUnit: String {
         get {
             switch (servingSizeUnit) {
                 case .each:
-                    return "Each"
+                    return "Item"
                 case .g:
                     return "G"
                 default:
@@ -142,10 +215,12 @@ class Food: ObservableObject, Identifiable {
                 id: id,
                 name: name,
                 brand: brand,
-                servingSizeUnit: displayServingSize,
+                servingSize: servingSize,
+                servingSizeUnit: displayServingSizeUnit,
                 calories: calories,
                 fat: fat,
                 protein: protein,
+                sugar: sugar,
                 carbohydrate: carbohydrate,
                 fiber: fiber,
                 sodium: sodium,
@@ -161,13 +236,15 @@ class Food: ObservableObject, Identifiable {
         calories = data.calories
         fat = data.fat
         protein = data.protein
+        sugar = data.sugar
         carbohydrate = data.carbohydrate
         fiber = data.fiber
         sodium = data.sodium
         cholesterol = data.cholesterol
+        servingSize = data.servingSize
         
         switch (data.servingSizeUnit) {
-            case "Each":
+            case "Item":
                 servingSizeUnit = .each
             case "G":
                 servingSizeUnit = .g

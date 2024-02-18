@@ -36,5 +36,8 @@ func getNumberField(_ value: Binding<String>, _ label: String) -> some View {
                 }
             }
     }
-    
+}
+
+func isNumber(_ value: String) -> Bool {
+    return Int(value) != nil
 }
