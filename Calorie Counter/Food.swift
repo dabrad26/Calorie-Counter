@@ -11,6 +11,9 @@ import SwiftUI
 enum ServingSizeUnit {
     case g
     case each
+    case liter
+    case ml
+    case ounce
     case other
 }
 
@@ -199,13 +202,19 @@ class Food: ObservableObject, Identifiable {
     var displayServingSizeUnit: String {
         get {
             switch (servingSizeUnit) {
-                case .each:
-                    return "Item"
-                case .g:
-                    return "G"
-                default:
-                    return ""
-                }
+            case .each:
+                return "Item"
+            case .g:
+                return "G"
+            case .liter:
+                return "L"
+            case .ml:
+                return "ML"
+            case .ounce:
+                return "OZ"
+            default:
+                return ""
+            }
         }
     }
     
@@ -229,6 +238,22 @@ class Food: ObservableObject, Identifiable {
         }
     }
     
+    func clearData() -> Void {
+        id = UUID()
+        name = ""
+        brand = ""
+        calories = 0
+        fat = 0
+        protein = 0
+        sugar = 0
+        carbohydrate = 0
+        fiber = 0
+        sodium = 0
+        cholesterol = 0
+        servingSize = 1
+        servingSizeUnit = ServingSizeUnit.g
+    }
+    
     func loadFromDataStore(data: FoodDataStore) -> Void {
         id = data.id
         name = data.name
@@ -244,12 +269,18 @@ class Food: ObservableObject, Identifiable {
         servingSize = data.servingSize
         
         switch (data.servingSizeUnit) {
-            case "Item":
-                servingSizeUnit = .each
-            case "G":
-                servingSizeUnit = .g
-            default:
-                servingSizeUnit = .other
+        case "Item":
+            servingSizeUnit = .each
+        case "G":
+            servingSizeUnit = .g
+        case "L":
+            servingSizeUnit = .liter
+        case "ML":
+            servingSizeUnit = .ml
+        case "OZ":
+            servingSizeUnit = .ounce
+        default:
+            servingSizeUnit = .other
         }
     }
 }

@@ -15,8 +15,8 @@ struct LogFoodView: View {
     private var editMode: Bool
     private var showDate: Bool
     
-    init(showNewForm: Binding<Bool>, userStore: UserStore, editMode: Bool = false, showDate: Bool = false, foodLog: ObservedObject<FoodLog> = ObservedObject(initialValue: FoodLog())) {
-        self._foodLog = foodLog
+    init(showNewForm: Binding<Bool>, userStore: UserStore, editMode: Bool = false, showDate: Bool = false, foodLog: ObservedObject<FoodLog>?) {
+        self._foodLog = foodLog ?? ObservedObject(initialValue: FoodLog())
         self.userStore = userStore
         self._showNewForm = showNewForm
         self.editMode = editMode
@@ -64,7 +64,7 @@ struct LogFoodView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         if (editMode) {
-                            userStore.saveData()
+                            userStore.updateFoodLogItem(foodLog: foodLog)
                         } else {
                             userStore.addFoodLogItem(item: foodLog)
                         }
@@ -83,5 +83,5 @@ struct LogFoodView: View {
 }
 
 #Preview {
-    LogFoodView(showNewForm: .constant(true), userStore: UserStore())
+    LogFoodView(showNewForm: .constant(true), userStore: UserStore(), foodLog: nil)
 }

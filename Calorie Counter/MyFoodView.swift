@@ -10,6 +10,7 @@ import SwiftUI
 struct MyFoodView: View {
     @ObservedObject var userStore: UserStore
     @State private var showNewForm = false
+    @ObservedObject private var editItem: Food = Food()
     
     init(userStore: UserStore) {
         self.userStore = userStore
@@ -23,7 +24,13 @@ struct MyFoodView: View {
                 } else {
                     List {
                         ForEach(userStore.foods) { food in
-                            food.displayList
+                            Button(action: {
+                                editItem.loadFromDataStore(data: food.dataStore)
+                                showNewForm = true
+                            }, label: {
+                                food.displayList
+                            })
+                            .foregroundColor(.primary)
                         }
                         .onDelete(perform: delete)
                     }
@@ -33,13 +40,16 @@ struct MyFoodView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("New Food") {
+                        editItem.clearData()
                         showNewForm = true
                     }
                     .fontWeight(.bold)
                 }
             }
             .sheet(isPresented: $showNewForm) {
-                NewFoodView(showNewForm: $showNewForm, userStore: userStore)
+                let editMode: Bool = editItem.name != ""
+                
+                NewFoodView(showNewForm: $showNewForm, userStore: userStore, editMode: editMode, food: editMode ? ObservedObject(initialValue: editItem) : nil)
             }
         }
     }

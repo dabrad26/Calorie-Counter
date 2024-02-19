@@ -13,8 +13,8 @@ struct NewFoodView: View {
     @ObservedObject var userStore: UserStore
     private var editMode: Bool
 
-    init(showNewForm: Binding<Bool>, userStore: UserStore, editMode: Bool = false, food: ObservedObject<Food> = ObservedObject(initialValue: Food())) {
-        self._food = food
+    init(showNewForm: Binding<Bool>, userStore: UserStore, editMode: Bool = false, food: ObservedObject<Food>?) {
+        self._food = food ?? ObservedObject(initialValue: Food())
         self.userStore = userStore
         self._showNewForm = showNewForm
         self.editMode = editMode
@@ -33,6 +33,9 @@ struct NewFoodView: View {
                         Picker("Unit", selection: $food.servingSizeUnit) {
                             Text("Gram").tag(ServingSizeUnit.g)
                             Text("Item").tag(ServingSizeUnit.each)
+                            Text("Liter").tag(ServingSizeUnit.liter)
+                            Text("Milliliter").tag(ServingSizeUnit.ml)
+                            Text("Ounce").tag(ServingSizeUnit.ounce)
                             Text("Other").tag(ServingSizeUnit.other)
                         }
                     }
@@ -60,7 +63,7 @@ struct NewFoodView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         if (editMode) {
-                            userStore.saveData()
+                            userStore.updateFoodItem(food: food)
                         } else {
                             userStore.addFoodItem(item: food)
                         }
@@ -76,5 +79,5 @@ struct NewFoodView: View {
 }
 
 #Preview {
-    NewFoodView(showNewForm: .constant(true), userStore: UserStore())
+    NewFoodView(showNewForm: .constant(true), userStore: UserStore(), food: nil)
 }

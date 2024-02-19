@@ -10,6 +10,7 @@ import SwiftUI
 struct TodayView: View {
     @ObservedObject var userStore: UserStore
     @State private var showNewForm = false
+    @ObservedObject private var editItem: FoodLog = FoodLog()
     
     init(userStore: UserStore) {
         self.userStore = userStore
@@ -24,13 +25,16 @@ struct TodayView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Log Food") {
+                        editItem.clearData()
                         showNewForm = true
                     }
                     .fontWeight(.bold)
                 }
             }
             .sheet(isPresented: $showNewForm) {
-                LogFoodView(showNewForm: $showNewForm, userStore: userStore)
+                let editMode: Bool = editItem.food.name != ""
+                
+                LogFoodView(showNewForm: $showNewForm, userStore: userStore, editMode: editMode, showDate: true, foodLog: editMode ? ObservedObject(initialValue: editItem) : nil)
             }
         }
     }

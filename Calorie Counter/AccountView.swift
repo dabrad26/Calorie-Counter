@@ -48,7 +48,7 @@ struct AccountView: View {
                     }
                 }
                 Section(header: Text("Account")) {
-                    NavigationLink(destination: AccountDelete()) {
+                    NavigationLink(destination: AccountDelete(userStore: userStore)) {
                         HStack {
                             Image(systemName: "xmark.circle")
                             Text("Delete Account")

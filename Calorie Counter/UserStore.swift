@@ -14,12 +14,14 @@ struct JsonStoreData: Codable {
 }
 
 class UserStore: ObservableObject {
-    @Published var dailyCalories: String = "2000"
+    let defaultDailyCalories: Int = 2000
+    @Published var dailyCalories: String
     @Published var foods: [Food] = []
     @Published var foodLogs: [FoodLog] = []
     var lastStoredJson: String = ""
     
     init() {
+        dailyCalories = String(defaultDailyCalories)
         let userData = UserDefaults.standard.string(forKey: "user_store")
         initializeData(userData: userData)
     }
@@ -54,7 +56,7 @@ class UserStore: ObservableObject {
     }
     
     private func sortFoodLog() -> Void {
-        foodLogs.sort(by: { $0.date.compare($1.date) == .orderedAscending })
+        foodLogs.sort(by: { $0.date.compare($1.date) == .orderedDescending })
     }
     
     func saveData() -> Void {
@@ -69,8 +71,45 @@ class UserStore: ObservableObject {
             let jsonString = String(data: jsonData, encoding: .utf8)
             lastStoredJson = jsonString ?? ""
             UserDefaults.standard.setValue(jsonString, forKey: "user_store")
+            
+            dailyCalories = dailyCalories
+            foods = foods
+            foodLogs = foodLogs
         } catch {
             print("ERROR: Unable to save JSON data: \(error.localizedDescription)")
+        }
+    }
+    
+    func clearData() -> Void {
+        dailyCalories = String(defaultDailyCalories)
+        foods = []
+        foodLogs = []
+        saveData()
+    }
+    
+    func updateFoodItem(food: Food) -> Void {
+        let foundIndex = foods.firstIndex(where: { item in
+            return item.id == food.id
+        })
+        
+        if (foundIndex != nil) {
+            let newFood = Food()
+            newFood.loadFromDataStore(data: food.dataStore)
+            foods[foundIndex!] = newFood
+            saveData()
+        }
+    }
+    
+    func updateFoodLogItem(foodLog: FoodLog) -> Void {
+        let foundIndex = foodLogs.firstIndex(where: { item in
+            return item.id == foodLog.id
+        })
+        
+        if (foundIndex != nil) {
+            let newFoodLog = FoodLog()
+            newFoodLog.loadFromDataStore(data: foodLog.dataStore)
+            foodLogs[foundIndex!] = newFoodLog
+            saveData()
         }
     }
     

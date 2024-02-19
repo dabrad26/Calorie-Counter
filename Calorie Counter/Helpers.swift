@@ -41,3 +41,12 @@ func getNumberField(_ value: Binding<String>, _ label: String) -> some View {
 func isNumber(_ value: String) -> Bool {
     return Int(value) != nil
 }
+
+
+var numberFormatter: NumberFormatter {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    formatter.maximumFractionDigits = 2
+    
+    return formatter
+}

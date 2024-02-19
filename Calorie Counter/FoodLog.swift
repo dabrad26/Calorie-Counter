@@ -26,14 +26,6 @@ class FoodLog: ObservableObject, Identifiable {
         date = Date()
     }
     
-    private var numberFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 2
-        
-        return formatter
-    }
-    
     var displayServingInfo: String {
         get {
             let servingTotal = numberServings * Double(food.servingSize)
@@ -42,12 +34,51 @@ class FoodLog: ObservableObject, Identifiable {
         }
     }
     
+    var totalCalories: Double {
+        get {
+            return Double(food.calories) * numberServings
+        }
+    }
+    
     var displayList: some View {
         get {
+            var stringParts: [String] = [];
+            
+            if (food.caloriesString != "" && stringParts.count < 5) {
+                stringParts.append("\(numberFormatter.string(for: totalCalories) ?? "0") Kcal")
+            }
+            
+            if (food.fatString != "" && stringParts.count < 5) {
+                stringParts.append("\(numberFormatter.string(for: Double(food.fat) * numberServings) ?? "0")G fat")
+            }
+            
+            if (food.sugarString != "" && stringParts.count < 5) {
+                stringParts.append("\(numberFormatter.string(for: Double(food.sugar) * numberServings) ?? "0")G sugar")
+            }
+            
+            if (food.proteinString != "" && stringParts.count < 5) {
+                stringParts.append("\(numberFormatter.string(for: Double(food.protein) * numberServings) ?? "0")G protein")
+            }
+            
+            if (food.fiberString != "" && stringParts.count < 5) {
+                stringParts.append("\(numberFormatter.string(for: Double(food.fiber) * numberServings) ?? "0")G fiber")
+            }
+            
+            if (food.carbohydrateString != "" && stringParts.count < 5) {
+                stringParts.append("\(numberFormatter.string(for: Double(food.carbohydrate) * numberServings) ?? "0")G carbs")
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = .short
+            dateFormatter.dateStyle = .none
+            
             return VStack {
-                Text(date.formatted())
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 Text("\(food.displayName) - \(displayServingInfo)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(stringParts.joined(separator: ", "))
+                    .font(.caption)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(dateFormatter.string(for: date) ?? "")
                     .font(.caption)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -69,6 +100,13 @@ class FoodLog: ObservableObject, Identifiable {
                 numberServings: numberServings
             )
         }
+    }
+    
+    func clearData() -> Void {
+        id = UUID()
+        date = Date()
+        food = Food()
+        numberServings = 1
     }
     
     func loadFromDataStore(data: FoodLogDataStore) -> Void {

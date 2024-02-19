@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchFoodView: View {
     @State var searchText: String = ""
+    @State var createFoodItem: Bool = false
     @Binding var showSearchView: Bool
     @ObservedObject var foodLog: FoodLog
     @ObservedObject var userStore: UserStore
@@ -41,7 +42,8 @@ struct SearchFoodView: View {
                         getListButton(food)
                     }
                     Button("Create New Food") {
-                        print("TODO: Open New Food flow!")
+                        searchText = ""
+                        createFoodItem = true
                     }
                 }
             }
@@ -56,6 +58,9 @@ struct SearchFoodView: View {
                 }
             }
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+            .sheet(isPresented: $createFoodItem) {
+                NewFoodView(showNewForm: $createFoodItem, userStore: userStore, food: nil)
+            }
         }
     }
 }
