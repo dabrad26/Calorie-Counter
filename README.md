@@ -6,7 +6,7 @@ Final Project by David Bradshaw (@dabrad26) for iOS App Productions (CSE-41249) 
 
 ## Setup
 
-Create a new file called secrets.plist (use the secrets-example.plist file for reference). You must paste your secret in this PLIST file. This file is not commited.
+Create a new file called secrets.plist (use the secrets-example.plist file for reference). You must paste your secret in this PLIST file. This file is not commited.  Be sure to go to Build Phases > Copy Bundle Resources and be sure this file shows in this list.  You can request an API key from https://fdc.nal.usda.gov/api-key-signup.html.
 
 ## Tech Stack
 

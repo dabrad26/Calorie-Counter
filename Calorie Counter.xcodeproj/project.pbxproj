@@ -27,6 +27,9 @@
 		63A8ABA02B7DE96C00D69FF1 /* AccountDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8AB9F2B7DE96C00D69FF1 /* AccountDelete.swift */; };
 		63A8ABA22B7DEB7400D69FF1 /* LogFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8ABA12B7DEB7400D69FF1 /* LogFoodView.swift */; };
 		63A8ABA42B7DEC5000D69FF1 /* NewFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8ABA32B7DEC5000D69FF1 /* NewFoodView.swift */; };
+		63DE64EA2B8438DD00DB3E56 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DE64E92B8438DD00DB3E56 /* LoadingView.swift */; };
+		63DE64EC2B843C1000DB3E56 /* FoodApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DE64EB2B843C1000DB3E56 /* FoodApiData.swift */; };
+		63DE64F02B84410300DB3E56 /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63DE64EF2B84410300DB3E56 /* secrets.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,10 @@
 		63A8AB9F2B7DE96C00D69FF1 /* AccountDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDelete.swift; sourceTree = "<group>"; };
 		63A8ABA12B7DEB7400D69FF1 /* LogFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFoodView.swift; sourceTree = "<group>"; };
 		63A8ABA32B7DEC5000D69FF1 /* NewFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFoodView.swift; sourceTree = "<group>"; };
+		63DE64E92B8438DD00DB3E56 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		63DE64EB2B843C1000DB3E56 /* FoodApiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodApiData.swift; sourceTree = "<group>"; };
+		63DE64ED2B843F8F00DB3E56 /* Calorie Counter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Calorie Counter"; sourceTree = "<group>"; };
+		63DE64EF2B84410300DB3E56 /* secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = secrets.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,10 +77,12 @@
 		632980ED2B746FF100086A9E = {
 			isa = PBXGroup;
 			children = (
+				63DE64EF2B84410300DB3E56 /* secrets.plist */,
 				632981072B74702900086A9E /* README.md */,
 				635129202B7487F900B1948C /* secrets-example.plist */,
 				6351291F2B74879D00B1948C /* secrets.plist */,
 				632980F82B746FF100086A9E /* Calorie Counter */,
+				63DE64ED2B843F8F00DB3E56 /* Calorie Counter */,
 				632980F72B746FF100086A9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,8 +116,10 @@
 				63A8AB9F2B7DE96C00D69FF1 /* AccountDelete.swift */,
 				63680B132B802189006F047A /* Helpers.swift */,
 				63680B172B8047B7006F047A /* NoItemsView.swift */,
+				63DE64E92B8438DD00DB3E56 /* LoadingView.swift */,
 				632980FD2B746FF200086A9E /* Assets.xcassets */,
 				632980FF2B746FF200086A9E /* Preview Content */,
+				63DE64EB2B843C1000DB3E56 /* FoodApiData.swift */,
 			);
 			path = "Calorie Counter";
 			sourceTree = "<group>";
@@ -179,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63DE64F02B84410300DB3E56 /* secrets.plist in Resources */,
 				632981012B746FF200086A9E /* Preview Assets.xcassets in Resources */,
 				632980FE2B746FF200086A9E /* Assets.xcassets in Resources */,
 			);
@@ -207,7 +219,9 @@
 				63680B182B8047B8006F047A /* NoItemsView.swift in Sources */,
 				636415972B8188EE00DB9D5D /* SearchFoodView.swift in Sources */,
 				63A8AB962B7DDC5700D69FF1 /* AccountView.swift in Sources */,
+				63DE64EC2B843C1000DB3E56 /* FoodApiData.swift in Sources */,
 				63680B142B802189006F047A /* Helpers.swift in Sources */,
+				63DE64EA2B8438DD00DB3E56 /* LoadingView.swift in Sources */,
 				63A8AB9E2B7DE93F00D69FF1 /* AccountExport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
