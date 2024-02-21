@@ -71,7 +71,7 @@ struct NewFoodView: View {
                         showNewForm = false
                     }
                     .fontWeight(.bold)
-                    .disabled(!(food.name != "" && food.calories > 0))
+                    .disabled(!(food.name != ""))
                 }
             }
         }

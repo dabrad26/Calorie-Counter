@@ -34,13 +34,13 @@ struct AccountView: View {
                     }
                 }
                 Section(header: Text("Data")) {
-                    NavigationLink(destination: AccountImport()) {
+                    NavigationLink(destination: AccountImport(userStore: userStore)) {
                         HStack {
                             Image(systemName: "arrow.up.circle")
                             Text("Import Data")
                         }
                     }
-                    NavigationLink(destination: AccountExport()) {
+                    NavigationLink(destination: AccountExport(userStore: userStore)) {
                         HStack {
                             Image(systemName: "arrow.down.circle")
                             Text("Export Data")

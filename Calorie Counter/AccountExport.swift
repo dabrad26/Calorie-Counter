@@ -8,13 +8,31 @@
 import SwiftUI
 
 struct AccountExport: View {
+    @ObservedObject var userStore: UserStore
+    
     var body: some View {
-        Text("Account Export Page")
+        VStack {
+            Text("Export data as JSON")
+                .font(.headline)
+                .padding(.bottom)
+            Text("Save or share this file and you can import into this app or another device.")
+                .font(.subheadline)
+                .multilineTextAlignment(.center)
+                .padding(.bottom)
+            ShareLink(item: userStore.lastStoredJson, preview: SharePreview("Calorie Counter Export Data")) {
+                Text("Export Data")
+                    .padding()
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .background(.blue)
+            }
+        }
+        .padding()
         .navigationTitle("Export Data")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    AccountExport()
+    AccountExport(userStore: UserStore())
 }

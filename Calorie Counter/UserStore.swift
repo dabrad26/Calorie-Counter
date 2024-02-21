@@ -26,7 +26,7 @@ class UserStore: ObservableObject {
         initializeData(userData: userData)
     }
     
-    private func initializeData(userData: String?) -> Void {
+    func initializeData(userData: String?) -> Void {
         if (userData != nil) {
             lastStoredJson = userData ?? ""
             let jsonData = userData!.data(using: .utf8)

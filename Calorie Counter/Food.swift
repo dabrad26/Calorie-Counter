@@ -129,7 +129,7 @@ class Food: ObservableObject, Identifiable {
     
     var caloriesString: String {
         get {
-            return calories > 0 ? String(calories) : ""
+            return calories > -1 ? String(calories) : ""
         }
         set (newValue) {
             calories = isNumber(newValue) ? Int(newValue) ?? 0 : 0
