@@ -40,6 +40,48 @@ class FoodLog: ObservableObject, Identifiable {
         }
     }
     
+    var totalFat: Double {
+        get {
+            return Double(food.fat) * numberServings
+        }
+    }
+    
+    var totalProtein: Double {
+        get {
+            return Double(food.protein) * numberServings
+        }
+    }
+    
+    var totalSugar: Double {
+        get {
+            return Double(food.sugar) * numberServings
+        }
+    }
+    
+    var totalCarbs: Double {
+        get {
+            return Double(food.carbohydrate) * numberServings
+        }
+    }
+    
+    var totalFiber: Double {
+        get {
+            return Double(food.fiber) * numberServings
+        }
+    }
+    
+    var totalSodium: Double {
+        get {
+            return Double(food.sodium) * numberServings
+        }
+    }
+    
+    var totalCholesterol: Double {
+        get {
+            return Double(food.cholesterol) * numberServings
+        }
+    }
+    
     var displayList: some View {
         get {
             var stringParts: [String] = [];
