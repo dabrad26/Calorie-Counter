@@ -52,11 +52,11 @@ struct DiaryView: View {
             Text(label)
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundColor(.black)
+                .foregroundStyle(Theme.textColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text("\(numberFormatter.string(for: totalCalories) ?? "0") / \(numberFormatter.string(for: allowedCalories) ?? "0")")
                 .font(.subheadline)
-                .foregroundColor(totalCalories <= allowedCalories ? .green : .red)
+                .foregroundStyle(totalCalories <= allowedCalories ? Theme.brandAccent3 : Theme.brandTertiary)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
             .padding(.bottom)
@@ -68,7 +68,7 @@ struct DiaryView: View {
                 }, label: {
                     foodLog.displayList
                 })
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             }
             .onDelete(perform: { indexSet in
                 indexSet.forEach { index in
@@ -101,6 +101,7 @@ struct DiaryView: View {
                         showNewForm = true
                     }
                     .fontWeight(.bold)
+                    .foregroundStyle(Theme.brandPrimary)
                 }
             }
             .sheet(isPresented: $showNewForm) {

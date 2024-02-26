@@ -29,6 +29,7 @@ struct ContentView: View {
                     Label("Account", systemImage: "person.crop.circle.fill")
                 }
         }
+        .tint(Theme.brandPrimary)
     }
 }
 

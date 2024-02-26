@@ -33,18 +33,16 @@ Create a new file called secrets.plist (use the secrets-example.plist file for r
 
 ## API Source
 
-API Key is in email
-
 https://fdc.nal.usda.gov/api-guide.html#bkmk-8
-
 
 ## Design Guide
 
-### Colors:
-- Primary #2FA0FC
-- Secondary #F2FA25
-- Tertiary #FA2D25
-- Accent 1 #A55350
-- Accent 2 #50677A
-- Accent 3 #797A50
+### Colors (Light, Dark):
+- Text:  System.Primary, System.Primary
+- Primary:  #2FA0FC, #2FA0FC
+- Secondary:  #F2FA25, #878c03
+- Tertiary:  #FA2D25, #FA2D25
+- Accent 1:  #A55350, #522928
+- Accent 2:  #50677A, #28333d
+- Accent 3:  #18F583, #5FC877
 

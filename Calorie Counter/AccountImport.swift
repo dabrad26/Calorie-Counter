@@ -51,10 +51,10 @@ struct AccountImport: View {
                 }, label: {
                     Text("Import Data")
                         .padding()
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .fontWeight(.bold)
                 })
-                .background(.blue)
+                .background(Theme.brandPrimary)
             }
         }
         .padding()

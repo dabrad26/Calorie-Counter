@@ -116,12 +116,13 @@ class FoodLog: ObservableObject, Identifiable {
             
             return VStack {
                 Text("\(food.displayName) - \(displayServingInfo)")
+                    .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(stringParts.joined(separator: ", "))
-                    .font(.caption)
+                    .font(.footnote)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(dateFormatter.string(for: date) ?? "")
-                    .font(.caption)
+                    .font(.footnote)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }

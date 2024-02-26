@@ -110,9 +110,10 @@ class Food: ObservableObject, Identifiable {
 
             return VStack {
                 Text(displayName)
+                    .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(stringParts.joined(separator: ", "))
-                    .font(.caption)
+                    .font(.footnote)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }

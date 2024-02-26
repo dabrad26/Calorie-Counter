@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632969F72B8C07B800219902 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632969F62B8C07B800219902 /* Theme.swift */; };
 		632980FA2B746FF100086A9E /* Calorie_CounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632980F92B746FF100086A9E /* Calorie_CounterApp.swift */; };
 		632980FC2B746FF100086A9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632980FB2B746FF100086A9E /* ContentView.swift */; };
 		632980FE2B746FF200086A9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632980FD2B746FF200086A9E /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		632969F62B8C07B800219902 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		632980F62B746FF100086A9E /* Calorie Counter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calorie Counter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		632980F92B746FF100086A9E /* Calorie_CounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calorie_CounterApp.swift; sourceTree = "<group>"; };
 		632980FB2B746FF100086A9E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,7 +61,7 @@
 		63A8ABA32B7DEC5000D69FF1 /* NewFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFoodView.swift; sourceTree = "<group>"; };
 		63DE64E92B8438DD00DB3E56 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		63DE64EB2B843C1000DB3E56 /* FoodApiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodApiData.swift; sourceTree = "<group>"; };
-		63DE64ED2B843F8F00DB3E56 /* Calorie Counter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Calorie Counter"; sourceTree = "<group>"; };
+		63DE64ED2B843F8F00DB3E56 /* Calorie Counter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Calorie Counter"; sourceTree = "<group>"; };
 		63DE64EF2B84410300DB3E56 /* secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = secrets.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,9 +119,10 @@
 				63680B132B802189006F047A /* Helpers.swift */,
 				63680B172B8047B7006F047A /* NoItemsView.swift */,
 				63DE64E92B8438DD00DB3E56 /* LoadingView.swift */,
+				63DE64EB2B843C1000DB3E56 /* FoodApiData.swift */,
+				632969F62B8C07B800219902 /* Theme.swift */,
 				632980FD2B746FF200086A9E /* Assets.xcassets */,
 				632980FF2B746FF200086A9E /* Preview Content */,
-				63DE64EB2B843C1000DB3E56 /* FoodApiData.swift */,
 			);
 			path = "Calorie Counter";
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				63A8AB942B7DDC4000D69FF1 /* DiaryView.swift in Sources */,
 				63A8AB922B7DDBFA00D69FF1 /* TodayView.swift in Sources */,
 				632980FA2B746FF100086A9E /* Calorie_CounterApp.swift in Sources */,
+				632969F72B8C07B800219902 /* Theme.swift in Sources */,
 				63680B162B803512006F047A /* UserStore.swift in Sources */,
 				63A8ABA22B7DEB7400D69FF1 /* LogFoodView.swift in Sources */,
 				63A8AB982B7DDCCA00D69FF1 /* MyFoodView.swift in Sources */,

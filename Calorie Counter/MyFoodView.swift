@@ -30,7 +30,7 @@ struct MyFoodView: View {
                             }, label: {
                                 food.displayList
                             })
-                            .foregroundColor(.primary)
+                            .foregroundStyle(.primary)
                         }
                         .onDelete(perform: delete)
                     }

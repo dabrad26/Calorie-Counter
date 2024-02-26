@@ -19,6 +19,7 @@ struct LoadingView: View {
                 .frame(width: 50, height: 50)
                 .padding(.vertical)
                 .rotationEffect(Angle(degrees: animate ? 360 : 0))
+                .foregroundStyle(Theme.brandPrimary)
                 .animation(.linear(duration: 0.8).repeatForever(autoreverses: false), value: animate)
                 .onAppear {
                     self.animate.toggle()

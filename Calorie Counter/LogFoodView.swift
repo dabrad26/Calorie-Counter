@@ -41,7 +41,7 @@ struct LogFoodView: View {
                                 Image(systemName: "magnifyingglass")
                             }
                         })
-                            .foregroundColor(.primary)
+                            .foregroundStyle(.primary)
                         HStack {
                             Text("Servings")
                             Spacer()
@@ -60,6 +60,7 @@ struct LogFoodView: View {
                         showNewForm = false
                     }
                     .fontWeight(.bold)
+                    .foregroundStyle(Theme.brandPrimary)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
@@ -73,6 +74,7 @@ struct LogFoodView: View {
                     }
                     .disabled(foodLog.food.name == "")
                     .fontWeight(.bold)
+                    .foregroundStyle(Theme.brandPrimary)
                 }
             }
             .sheet(isPresented: $showSearchView) {

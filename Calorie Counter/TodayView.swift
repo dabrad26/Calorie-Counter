@@ -35,9 +35,7 @@ struct TodayView: View {
         return list
     }
     
-    private func getFoodList() -> some View {
-        let list: [FoodLog] = getTodayItems()
-        
+    private func getFoodList(list: [FoodLog]) -> some View {
         return ForEach(list) { foodLog in
             Button(action: {
                 editItem.loadFromDataStore(data: foodLog.dataStore)
@@ -45,7 +43,7 @@ struct TodayView: View {
             }, label: {
                 foodLog.displayList
             })
-            .foregroundColor(.primary)
+            .foregroundStyle(.primary)
         }
         .onDelete(perform: { indexSet in
             indexSet.forEach { index in
@@ -65,15 +63,15 @@ struct TodayView: View {
             Text(label)
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text("\(hideData ? "-" : numberFormatter.string(for: value) ?? "0") \(hideData ? unit : "")")
+            Text("\(hideData ? "-" : numberFormatter.string(for: value) ?? "0") \(hideData ? "" : unit)")
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top)
     }
     
-    private func getCalorieChart() -> some View {
-        let list: [FoodLog] = getTodayItems()
+    private func getCalorieChart(list: [FoodLog] ) -> some View {
+        let allowedCalories = Double(userStore.dailyCalories) ?? Double(userStore.defaultDailyCalories)
         
         let totalCalories = list.reduce(0, { x, y in
             x + y.totalCalories
@@ -116,8 +114,8 @@ struct TodayView: View {
         ]
         
         var chartColors: [Color] = [
-            .blue,
-            .green
+            Theme.brandPrimary,
+            Theme.brandAccent3
         ]
         
         if (overage) {
@@ -131,28 +129,42 @@ struct TodayView: View {
         }
         
         return VStack {
-            Chart(items) { item in
-                SectorMark(
-                    angle: .value(
-                        Text(verbatim: item.title),
-                        item.percent
-                    ),
-                    innerRadius: .ratio(0.6),
-                    angularInset: 8
-                )
-                .foregroundStyle(
-                    by: .value(
-                        Text(verbatim: item.title),
-                        item.title
+            ZStack {
+                Chart(items) { item in
+                    SectorMark(
+                        angle: .value(
+                            Text(verbatim: item.title),
+                            item.percent
+                        ),
+                        innerRadius: .ratio(0.6),
+                        angularInset: 8
                     )
+                    .foregroundStyle(
+                        by: .value(
+                            Text(verbatim: item.title),
+                            item.title
+                        )
+                    )
+                }
+                .chartForegroundStyleScale(
+                    domain: items.map  { $0.title },
+                    range: chartColors
                 )
+                .chartLegend(.hidden)
+                .frame(minHeight: 250)
+                
+                VStack(alignment:.center) {
+                    Text("\(numberFormatter.string(for: totalCalories) ?? "0") /")
+                        .font(.title2)
+                        .foregroundColor(.primary)
+                    
+                    
+                    Text(numberFormatter.string(for: allowedCalories) ?? "0")
+                        .font(.body)
+                        .foregroundColor(.primary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
-            .chartForegroundStyleScale(
-                domain: items.map  { $0.title },
-                range: chartColors
-            )
-            .chartLegend(.hidden)
-            .frame(minHeight: 250)
             HStack {
                 getDetailInfo("Calories", totalCalories, "Kcal")
                 getDetailInfo("Fat", totalFat, "G")
@@ -171,18 +183,25 @@ struct TodayView: View {
     }
     
     var body: some View {
+        let todayList = getTodayItems()
+        
         NavigationStack {
             List {
                 Section {
-                    getCalorieChart()
+                    getCalorieChart(list: todayList)
                         .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
                 }
-                Section("Today's Food") {
-                    getFoodList()
+                
+                if (!todayList.isEmpty) {
+                    Section("Today's Food") {
+                        getFoodList(list: todayList)
+                            .listRowBackground(Color(UIColor.tertiarySystemGroupedBackground))
+                    }
                 }
             }
-            .listStyle(GroupedListStyle())
             .scrollContentBackground(.hidden)
+            .listStyle(GroupedListStyle())
             .navigationTitle("Today")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -191,6 +210,7 @@ struct TodayView: View {
                         showNewForm = true
                     }
                     .fontWeight(.bold)
+                    .foregroundStyle(Theme.brandPrimary)
                 }
             }
             .sheet(isPresented: $showNewForm) {

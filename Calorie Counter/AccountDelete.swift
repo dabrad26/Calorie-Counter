@@ -30,10 +30,10 @@ struct AccountDelete: View {
                 }, label: {
                     Text("DELETE ACCOUNT")
                         .padding()
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .fontWeight(.bold)
                 })
-                .background(.red)
+                .background(Theme.brandTertiary)
             }
         }
         .padding()

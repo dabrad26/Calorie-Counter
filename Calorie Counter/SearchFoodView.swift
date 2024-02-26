@@ -33,7 +33,7 @@ struct SearchFoodView: View {
         }, label: {
             item.displayList
         })
-        .foregroundColor(.primary)
+        .foregroundStyle(.primary)
     }
     
     private func makeApiCall() async throws -> [Food] {
@@ -52,7 +52,7 @@ struct SearchFoodView: View {
         let decoded = try JSONDecoder().decode(FoodApiData.self, from: data)
         
         return decoded.foods.map { item in
-            var newFoodItem = Food()
+            let newFoodItem = Food()
             newFoodItem.name = item.description ?? ""
             newFoodItem.brand = item.brandName ?? ""
             newFoodItem.servingSize = Int(item.servingSize ?? 1)
@@ -127,10 +127,14 @@ struct SearchFoodView: View {
             .background(Color(.systemGray6))
             .cornerRadius(8)
             .padding(.horizontal, 10)
+            .onSubmit {
+                searchApi()
+            }
+            .submitLabel(.search)
         .overlay(
             HStack {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(.gray)
+                    .foregroundStyle(.gray)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 16)
                 
@@ -139,7 +143,7 @@ struct SearchFoodView: View {
                         self.searchText = ""
                     }) {
                         Image(systemName: "multiply.circle.fill")
-                            .foregroundColor(.gray)
+                            .foregroundStyle(.gray)
                             .padding(.trailing, 16)
                     }
                 }
@@ -158,6 +162,7 @@ struct SearchFoodView: View {
                         }, label: {
                             Text("Search")
                         })
+                        .foregroundStyle(Theme.brandPrimary)
                     }
                 }
                 .padding(.horizontal)
@@ -180,6 +185,7 @@ struct SearchFoodView: View {
                         apiData.foods = []
                         createFoodItem = true
                     }
+                    .foregroundStyle(Theme.brandPrimary)
                 }
             }
             .navigationTitle("Search for Food")
@@ -190,6 +196,7 @@ struct SearchFoodView: View {
                         showSearchView = false
                     }
                     .fontWeight(.bold)
+                    .foregroundStyle(Theme.brandPrimary)
                 }
             }
             .sheet(isPresented: $createFoodItem) {

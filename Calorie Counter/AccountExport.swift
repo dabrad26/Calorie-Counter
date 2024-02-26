@@ -22,9 +22,9 @@ struct AccountExport: View {
             ShareLink(item: userStore.lastStoredJson, preview: SharePreview("Calorie Counter Export Data")) {
                 Text("Export Data")
                     .padding()
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .fontWeight(.bold)
-                    .background(.blue)
+                    .background(Theme.brandPrimary)
             }
         }
         .padding()

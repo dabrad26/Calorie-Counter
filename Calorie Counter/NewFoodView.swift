@@ -59,6 +59,7 @@ struct NewFoodView: View {
                         showNewForm = false
                     }
                     .fontWeight(.bold)
+                    .foregroundStyle(Theme.brandPrimary)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
@@ -71,6 +72,7 @@ struct NewFoodView: View {
                         showNewForm = false
                     }
                     .fontWeight(.bold)
+                    .foregroundStyle(Theme.brandPrimary)
                     .disabled(!(food.name != ""))
                 }
             }

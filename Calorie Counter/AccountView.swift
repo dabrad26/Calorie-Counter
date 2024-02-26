@@ -59,6 +59,7 @@ struct AccountView: View {
             .listStyle(GroupedListStyle())
             .navigationTitle("Account")
         }
+        .accentColor(Theme.brandPrimary)
     }
 }
 

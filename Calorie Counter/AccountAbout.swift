@@ -27,7 +27,7 @@ struct AccountAbout: View {
                         Image(systemName: "link")
                     }
                 })
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
                 Button(action: {
                     if let url = URL(string: "https://linkedin.com/in/davidbradshawus") {
                         UIApplication.shared.open(url)
@@ -40,7 +40,7 @@ struct AccountAbout: View {
                         Image(systemName: "link")
                     }
                 })
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
                 Button(action: {
                     if let url = URL(string: "https://github.com/dabrad26") {
                         UIApplication.shared.open(url)
@@ -53,7 +53,7 @@ struct AccountAbout: View {
                         Image(systemName: "link")
                     }
                 })
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             }
             Section(header: Text("Project")) {
                 HStack {
@@ -72,7 +72,7 @@ struct AccountAbout: View {
                         Image(systemName: "link")
                     }
                 })
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             }
             Section(header: Text("Class")) {
                 HStack {
